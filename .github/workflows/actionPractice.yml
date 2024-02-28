@@ -17,6 +17,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  github_info:
+    runs-on: ubuntu-latest
+    steps:
+        - env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: |
+            echo Triggered Event: ${{ github.event_name }}
+            echo Current Repository: ${{ github.repository }}
+            echo "$GITHUB_CONTEXT"
+            
   repo_forked:
 
     runs-on: ubuntu-latest
